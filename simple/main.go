@@ -13,11 +13,11 @@ type MyButton struct {
 
 type MyRoot struct {
 	me any `tag:"div" id:"myroot"`
-	_  any `tag:"h1" text:"Hello World!" class:"header" id:"head1"`
+	_  any `tag:"h1" text:"Hello World!" id:"head1"`
 	_  any `tag:"div" id:"secondDiv"`
 	_  struct {
-		_ any `tag:"button" text:"Hi" class:"btn" id:"btn2"`
-		_ any `tag:"button" text:"Bye" class:"btn" id:"btn3"`
+		_ any `tag:"button" text:"Green" class:"btn" id:"btn2"`
+		_ any `tag:"button" text:"Red" class:"btn" id:"btn3"`
 	} `tag:"div" id:"innerDiv"`
 }
 
@@ -50,16 +50,16 @@ func main() {
 
 	cb2 := func() {
 		go func() {
-			rootNode.SetTextToElementWithId("head1", "Hi")
-			rootNode.Render()
+			rootNode.SetAttributeToElementWithId("head1", "class", "green")
+			rootNode.RenderFromElementWithId("head1")
 		}()
 	}
 	rootNode.AddEventListenerToElementWithId("btn2", "click", cb2)
 
 	cb3 := func() {
 		go func() {
-			rootNode.SetTextToElementWithId("head1", "Bye")
-			rootNode.Render()
+			rootNode.SetAttributeToElementWithId("head1", "class", "red")
+			rootNode.RenderFromElementWithId("head1")
 		}()
 	}
 	rootNode.AddEventListenerToElementWithId("btn3", "click", cb3)
