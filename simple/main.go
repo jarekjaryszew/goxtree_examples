@@ -26,8 +26,8 @@ type Response struct {
 }
 
 func main() {
-	rootNode, _ := goxtree.DressDomTree(&MyRoot{})
-	buttonNode, _ := goxtree.DressDomTree(&MyButton{})
+	rootNode, _ := goxtree.DressDomTree(&MyRoot{}, "")
+	buttonNode, _ := goxtree.DressDomTree(&MyButton{}, "")
 	rootNode.AddChildToElementWithId("secondDiv", buttonNode)
 
 	cbf := func(res string) {
